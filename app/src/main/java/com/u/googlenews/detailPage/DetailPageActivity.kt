@@ -26,13 +26,8 @@ class DetailPageActivity : AppCompatActivity() {
         val intentTitle = intent.getStringExtra("title")
         val intentUrl = intent.getStringExtra("url")
 
-        val newsVO = NewsVO(
-            intentUrl,
-            intentTitle,
-            "",
-            "",
-            intentKetwordList
-        )
+        val newsVO = NewsVO(intentUrl, intentTitle, "", "", intentKetwordList )
+        
         binding.setVariable(BR.item, newsVO)
 
         // 웹뷰 설정
