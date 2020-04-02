@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="rvItem" type="com.u.googlenews.NewsVO" />
+        <variable name="vm" type="com.u.googlenews.main.MainViewModel" />
+        <import type="android.view.View"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/rv_thumbnail"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:layout_gravity="center"
+            android:layout_margin="10sp"
+            app:thumbnail="@{rvItem.thumbnail}"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="10sp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/rv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{rvItem.title}"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/rv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{rvItem.txt}"
+                tools:ignore="HardcodedText" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/keyword_first"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/keyword"
+                    android:textSize="11sp"
+                    android:text="@{rvItem.keyword[0]}"
+                    android:visibility="@{rvItem.txt == null || rvItem.txt.length()==0 ? View.GONE : View.VISIBLE}"
+                    tools:ignore="HardcodedText,SmallSp"/>
+
+                <TextView
+                    android:id="@+id/keyword_second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/keyword"
+                    android:textSize="11sp"
+                    android:text="@{rvItem.keyword[1]}"
+                    android:visibility="@{rvItem.txt == null || rvItem.txt.length()==0 ? View.GONE : View.VISIBLE}"
+                    tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
+
+                <TextView
+                    android:id="@+id/keyword_third"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/keyword"
+                    android:text="@{rvItem.keyword[2]}"
+                    android:visibility="@{rvItem.txt == null || rvItem.txt.length()==0 ? View.GONE : View.VISIBLE}"
+                    android:textSize="11sp"
+                    tools:ignore="SmallSp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

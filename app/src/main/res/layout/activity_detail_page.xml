@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="item" type="com.u.googlenews.NewsVO" />
+        <import type="android.view.View"/>
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/detail_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:text="@{item.title}"
+            android:layout_margin="5sp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_margin="5sp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/keyword_first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/keyword"
+                android:textSize="12sp"
+                android:text="@{item.keyword[0]}"
+                android:visibility="@{item.keyword[0] == null || item.keyword[0].length()==0 ? View.GONE : View.VISIBLE}"
+                tools:ignore="HardcodedText"/>
+
+            <TextView
+                android:id="@+id/keyword_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/keyword"
+                android:textSize="12sp"
+                android:text="@{item.keyword[1]}"
+                android:visibility="@{item.keyword[1] == null || item.keyword[1].length()==0 ? View.GONE : View.VISIBLE}"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/keyword_third"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/keyword"
+                android:text="@{item.keyword[2]}"
+                android:visibility="@{item.keyword[2] == null || item.keyword[2].length()==0 ? View.GONE : View.VISIBLE}"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <WebView
+            android:id="@+id/detail_webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:loadUrl="@{item.url}"
+            >
+
+        </WebView>
+
+    </LinearLayout>
+</layout>
